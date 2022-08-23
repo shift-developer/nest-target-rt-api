@@ -1,5 +1,5 @@
 export const EnvConfiguration = () => ({
-  APP_ENVIRONMENT: process.env.NODE_ENV || 'development',
+  APP_ENVIRONMENT: process.env.NODE_ENV || 'dev',
   APP_PORT: +process.env.PORT,
   DB_DATABSE: process.env.DB_DATABASE,
   DB_HOST: process.env.DB_HOST,
