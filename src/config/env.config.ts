@@ -1,4 +1,5 @@
 export const EnvConfiguration = () => ({
+  AUTH_STRATEGY: 'jwt',
   APP_ENVIRONMENT: process.env.NODE_ENV || 'dev',
   APP_PORT: +process.env.PORT,
   DB_DATABSE: process.env.DB_DATABASE,
@@ -8,6 +9,7 @@ export const EnvConfiguration = () => ({
   DB_USERNAME: process.env.DB_USERNAME,
   DB_DEFAULT_LIMIT: +process.env.DB_DEFAULT_LIMIT,
   JWT_SECRET: process.env.JWT_SECRET,
+  JWT_EXPIRES_IN: +process.env.JWT_EXPIRES_IN,
   TYPEORM_ATTEMPTS: +process.env.TYPEORM_ATTEMPTS,
   TYPEORM_DELAY: +process.env.TYPEORM_DELAY,
   TYPEORM_SYNCHRONIZE: !!process.env.TYPEORM_SYNCHRONIZE,
