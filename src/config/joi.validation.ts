@@ -9,6 +9,7 @@ export const JoiValidationSchema = Joi.object({
   DB_USERNAME: Joi.string().required(),
   DB_DEFAULT_LIMIT: Joi.number().default(50),
   JWT_SECRET: Joi.string().required(),
+  JWT_EXPIRES_IN: Joi.number().default(3600),
   TYPEORM_ATTEMPTS: Joi.number().default(10),
   TYPEORM_DELAY: Joi.number().default(3000),
   TYPEORM_SYNCHRONIZE: Joi.boolean().default(false),
