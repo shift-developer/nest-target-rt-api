@@ -35,6 +35,28 @@ $ npm install
 
 ## Running the app
 
+Before running the app you must create .env file with these config variables:
+
+
+Variable Name | Description | Example
+-- | -- | --
+NODE_ENV | Node Environment | production
+PORT | App port | 3000
+DB_HOST | Database host name | localhost
+DB_PORT | Database port. | 5432
+DB_DATABASE | Database name. | postgres
+DB_MIGRATE | Migrate database when the app is runing. | true
+DB_USERNAME | Username used to establish the connection. | postgres
+DB_PASSWORD | Password used to establish the connection. | pass123
+JWT_SECRET | Secret JWT string | 76aHGSG&^H^gdkasd
+JWT_EXPIRES_IN | Seconds to expire JWT token | 3600
+TYPEORM_ATTEMPTS | Number of times to retry connecting db | 10
+TYPEORM_DELAY | Delay between connection retry attempts (ms) | 3000
+TYPEORM_SYNCHRONIZE | Indicates if database schema should be auto created on every application launch. Be careful with this option and don't use this in production - otherwise you can lose production data. This option is useful during debug and development. Alternative to it, you can use CLI and run schema:sync command. | true
+
+
+<br class="Apple-interchange-newline">
+
 ```bash
 # development
 $ npm run start

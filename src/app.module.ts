@@ -3,10 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { EnvConfiguration } from './config/env.config';
-import { JoiValidationSchema } from './config/joi.validation';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
+import { EnvConfiguration } from '@config/env.config';
+import { JoiValidationSchema } from '@config/joi.validation';
 
 @Module({
   imports: [
