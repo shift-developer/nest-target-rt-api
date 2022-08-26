@@ -1,15 +1,12 @@
 import {
   IsEmail,
   IsIn,
-  IsNotEmpty,
-  IsOptional,
   IsString,
   Matches,
   MaxLength,
   MinLength,
 } from 'class-validator';
-
-type Gender = 'Male' | 'Female' | 'Other';
+import { Gender } from '@users/interfaces/user.interface';
 
 export class SignUpDTO {
   @IsString()
@@ -25,18 +22,16 @@ export class SignUpDTO {
   })
   password: string;
 
-  @IsIn(['Male', 'Female', 'Other'])
+  @IsString()
+  @MinLength(2)
+  @MaxLength(50)
+  firstName: string;
+
+  @IsString()
+  @MinLength(2)
+  @MaxLength(50)
+  lastName: string;
+
+  @IsIn(['M', 'F', 'O'])
   gender: Gender;
-
-  @IsOptional()
-  @IsString()
-  @MinLength(2)
-  @MaxLength(50)
-  firstname: string;
-
-  @IsOptional()
-  @IsString()
-  @MinLength(2)
-  @MaxLength(50)
-  lastname: string;
 }

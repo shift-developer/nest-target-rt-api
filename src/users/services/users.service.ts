@@ -1,26 +1,51 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '@users/dto/create-user.dto';
-import { UpdateUserDto } from '@users/dto/update-user.dto';
+import { User } from '@users/entities/user.entity';
+import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+  ) {}
+
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const { password, ...userData } = createUserDto;
+    const user = this.userRepository.create({
+      ...userData,
+      password: this.hashPassword(password),
+    });
+    await this.userRepository.save(user);
+    delete user.password;
+
+    return user;
   }
 
-  findAll() {
-    return `This action returns all users`;
+  private hashPassword(password: string): string {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync());
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  checkPassword(inputPassword: string, hashedUserPassword: string): boolean {
+    return bcrypt.compareSync(inputPassword, hashedUserPassword);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async findAll(): Promise<User[]> {
+    return this.userRepository.find();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async findOne(id: string): Promise<User> {
+    const user = await this.userRepository.findOneBy({ id });
+    if (!user) throw new NotFoundException(`User id: ${id} not found.`);
+    return user;
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    return this.userRepository.findOne({
+      where: { email },
+      select: { email: true, password: true, id: true },
+    });
   }
 }

@@ -45,7 +45,6 @@ PORT | App port | 3000
 DB_HOST | Database host name | localhost
 DB_PORT | Database port. | 5432
 DB_DATABASE | Database name. | postgres
-DB_MIGRATE | Migrate database when the app is runing. | true
 DB_USERNAME | Username used to establish the connection. | postgres
 DB_PASSWORD | Password used to establish the connection. | pass123
 JWT_SECRET | Secret JWT string | 76aHGSG&^H^gdkasd
