@@ -23,7 +23,6 @@
       "@config": ["src/config"],
       "@database/*": ["src/database/*"],
       "@home/*": ["src/home/*"],
-      "@common/*": ["src/common/*"],
     }
   }
 }
