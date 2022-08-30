@@ -22,6 +22,7 @@
       "@config/*": ["src/config/*"],
       "@config": ["src/config"],
       "@database/*": ["src/database/*"],
+      "@home/*": ["src/home/*"],
     }
   }
 }

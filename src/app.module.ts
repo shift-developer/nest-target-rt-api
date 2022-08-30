@@ -7,6 +7,7 @@ import {
   databaseConfig,
   JoiValidationSchema,
 } from '@config';
+import { HomeModule } from '@home/home.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import {
       validationSchema: JoiValidationSchema,
     }),
     DatabaseModule,
+    HomeModule,
   ],
   controllers: [],
   providers: [],
