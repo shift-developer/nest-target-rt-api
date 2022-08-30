@@ -8,6 +8,7 @@ import {
 } from '@config';
 import { DatabaseModule } from '@database/database.module';
 import { HomeModule } from '@home/home.module';
+import { CommonModule } from '@common/common.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { HomeModule } from '@home/home.module';
     }),
     DatabaseModule,
     HomeModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],
