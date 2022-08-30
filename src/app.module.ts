@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from '@database/database.module';
-import { AppController } from '@rs-target/app.controller';
-import { AppService } from '@rs-target/app.service';
 import {
   appConfig,
   authConfig,
@@ -20,7 +18,7 @@ import {
     }),
     DatabaseModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
