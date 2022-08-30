@@ -20,6 +20,8 @@
     "paths": {
       "src/*": ["src/*"],
       "@config/*": ["src/config/*"],
+      "@config": ["src/config"],
+      "@database/*": ["src/database/*"],
     }
   }
 }
