@@ -24,6 +24,7 @@
       "@database/*": ["src/database/*"],
       "@home/*": ["src/home/*"],
       "@common/*": ["src/common/*"],
+      "@users/*": ["src/users/*"],
     }
   }
 }
