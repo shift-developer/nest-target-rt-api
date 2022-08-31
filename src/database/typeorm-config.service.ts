@@ -20,6 +20,11 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       synchronize: this._configService.get<boolean>('database.synchronize'),
       logging: this._configService.get<boolean>('database.logging'),
       extra: { charset: this._configService.get<string>('database.charset') },
+      cli: {
+        entitiesDir: 'src',
+        migrationsDir: 'src/database/migrations',
+        subscribersDir: 'subscriber',
+      },
       ssl: this._configService.get<boolean>('database.sslEnabled')
         ? {
             rejectUnauthorized: this._configService.get<boolean>(
