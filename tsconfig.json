@@ -18,8 +18,10 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "src/*": ["src/*"],
+      "@rs-target/*": ["src/*"],
       "@config/*": ["src/config/*"],
+      "@config": ["src/config"],
+      "@database/*": ["src/database/*"],
     }
   }
 }
