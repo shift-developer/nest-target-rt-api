@@ -83,7 +83,7 @@ $ yarn test:cov
 
 ```bash
 # Generate automatic migration
-$ yarn migration:generate -- MigrationName
+$ yarn migration:generate <MigrationName>
 
 # Create new migration
 $ yarn migration:create
@@ -93,6 +93,9 @@ $ yarn migration:run
 
 # Revert the last migration
 $ yarn migration:revert
+
+# Show migrations history
+$ yan migration:show
 ```
 
 ## Support

@@ -12,11 +12,7 @@ export const AppDataSource = new DataSource({
   logging: process.env.DATABASE_LOGGING === 'true',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
-  cli: {
-    entitiesDir: 'src',
-    migrationsDir: 'src/database/migrations',
-    subscribersDir: 'subscriber',
-  },
+  migrationsTableName: 'typeorm_migrations_history',
   extra: {
     ssl:
       process.env.DATABASE_SSL_ENABLED === 'true'
