@@ -30,7 +30,7 @@ This is an agnostic high-level description of a project intended to be build usi
 ## Installation
 
 ```bash
-$ npm install
+$ yarn
 ```
 
 ## Running the app
@@ -57,26 +57,42 @@ DATABASE_SYNCHRONIZE | Indicates if database schema should be auto created on ev
 
 ```bash
 # development
-$ npm run start
+$ yarn start
 
 # watch mode
-$ npm run start:dev
+$ yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn start:prod
 ```
 
 ## Test
 
 ```bash
 # unit tests
-$ npm run test
+$ yarn test
 
 # e2e tests
-$ npm run test:e2e
+$ yarn test:e2e
 
 # test coverage
-$ npm run test:cov
+$ yarn test:cov
+```
+
+## Migrations
+
+```bash
+# Generate automatic migration
+$ yarn migration:generate -- MigrationName
+
+# Create new migration
+$ yarn migration:create
+
+# Run migrations
+$ yarn migration:run
+
+# Revert the last migration
+$ yarn migration:revert
 ```
 
 ## Support
