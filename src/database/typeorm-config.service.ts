@@ -20,6 +20,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       synchronize: this._configService.get<boolean>('database.synchronize'),
       logging: this._configService.get<boolean>('database.logging'),
       migrationsRun: this._configService.get<boolean>('database.migrate'),
+      migrationsTableName: 'typeorm_migrations_history',
       cli: {
         entitiesDir: 'src',
         migrationsDir: 'src/database/migrations',
