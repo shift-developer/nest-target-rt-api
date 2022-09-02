@@ -7,7 +7,7 @@ export class HomeService {
   appInfo() {
     return {
       name: this._configService.get<string>('app.name'),
-      version: process.env.npm_package_version,
+      version: this._configService.get<string>('app.version'),
     };
   }
 }
