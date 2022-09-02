@@ -1,8 +1,7 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 import { User } from '@users/entities/user.entity';
 import { CreateUserDto } from '@users/dto/create-user.dto';
-import { EMAIL_ERROR, ROUTINE_UNIQUE } from '@users/constants/user.constants';
 
 @Injectable()
 export class UsersRepository extends Repository<User> {
