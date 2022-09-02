@@ -77,6 +77,15 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^@rs-target/(.*)$": "<rootDir>/$1",
+      "^@database/(.*)$": "<rootDir>/database/$1",
+      "^@home/(.*)$": "<rootDir>/home/$1",
+      "^@users/(.*)$": "<rootDir>/users/$1",
+      "^@test/(.*)$": "<rootDir>/../test/$1",
+      "^@config/(.*)$": "<rootDir>/config/$1",
+      "^@common/(.*)$": "<rootDir>/common/$1"
+    }
   }
 }

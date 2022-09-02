@@ -5,11 +5,10 @@ import {
   authConfig,
   databaseConfig,
   JoiValidationSchema,
-} from '@config';
+} from '@config/index';
 import { DatabaseModule } from '@database/database.module';
 import { HomeModule } from '@home/home.module';
-import { CommonModule } from '@common/common.module';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from '@users/users.module';
 
 @Module({
   imports: [
@@ -21,7 +20,6 @@ import { UsersModule } from './users/users.module';
     }),
     DatabaseModule,
     HomeModule,
-    CommonModule,
     UsersModule,
   ],
   controllers: [],
