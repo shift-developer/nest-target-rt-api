@@ -5,7 +5,7 @@ import {
   authConfig,
   databaseConfig,
   JoiValidationSchema,
-} from '@config';
+} from '@config/index';
 import { DatabaseModule } from '@database/database.module';
 import { HomeModule } from '@home/home.module';
 
