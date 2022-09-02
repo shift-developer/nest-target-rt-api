@@ -1,8 +1,8 @@
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
-import { AppModule } from '@rs-target/app.module';
 import validationOptions from '@common/utils/validation-options';
+import { AppModule } from '@app/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
