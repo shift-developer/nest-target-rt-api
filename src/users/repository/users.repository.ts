@@ -1,4 +1,4 @@
-import { Injectable, UnprocessableEntityException } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 import { User } from '@users/entities/user.entity';
 import { CreateUserDto } from '@users/dto/create-user.dto';
@@ -27,14 +27,8 @@ export class UsersRepository extends Repository<User> {
 
   async createbyDTO(createUserDto: CreateUserDto): Promise<User> {
     const newUser = this.create(createUserDto);
-    try {
-      const user = await this.save(newUser);
-      return user;
-    } catch (e) {
-      if (e.routine == ROUTINE_UNIQUE)
-        throw new UnprocessableEntityException(EMAIL_ERROR);
-      else throw e;
-    }
+    const user = await this.save(newUser);
+    return user;
   }
 
   private getUserColumns(): (keyof User)[] {

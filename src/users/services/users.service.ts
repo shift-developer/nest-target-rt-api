@@ -1,16 +1,26 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+} from '@nestjs/common';
 import { UsersRepository } from '@users/repository/users.repository';
 import { CreateUserDto } from '@users/dto/create-user.dto';
 import { User } from '@users/entities/user.entity';
+import { ROUTINE_UNIQUE, EMAIL_ERROR } from '@users/constants/user.constants';
 import { compareSync } from 'bcrypt';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly _usersRepository: UsersRepository) {}
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const newUser = await this._usersRepository.createbyDTO(createUserDto);
-    delete newUser.password;
-    return newUser;
+    try {
+      const newUser = await this._usersRepository.createbyDTO(createUserDto);
+      delete newUser.password;
+      return newUser;
+    } catch (e) {
+      if (e.routine == ROUTINE_UNIQUE) throw new ConflictException(EMAIL_ERROR);
+      else throw e;
+    }
   }
 
   checkPassword(inputPassword: string, hashedUserPassword: string): boolean {
