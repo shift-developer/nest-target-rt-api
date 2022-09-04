@@ -19,12 +19,12 @@ const createMockUserDto = (userData?: IUser): CreateUserDto => {
 
 const createMockUser = (
   mockUserDto: CreateUserDto,
-  options?: { deleted: boolean },
+  options?: { randomDeletedAt: boolean },
 ) => {
   const user = new User(mockUserDto);
   user.uuid = randomUUID();
   user.createdAt = user.updatedAt = faker.date.past();
-  if (options?.deleted !== false)
+  if (options?.randomDeletedAt === true)
     user.deletedAt = faker.helpers.maybe<Date>(() => faker.date.past(), {
       probability: 0.1,
     });
@@ -33,12 +33,12 @@ const createMockUser = (
 
 const createMockUsersArr = (numberOfUsers: number): User[] => {
   return Array.from({ length: numberOfUsers }, () =>
-    createMockUser(createMockUserDto()),
+    createMockUser(createMockUserDto(), { randomDeletedAt: true }),
   );
 };
 
 const mockUserDto: CreateUserDto = createMockUserDto();
-const mockUser: User = createMockUser(mockUserDto, { deleted: false });
+const mockUser: User = createMockUser(mockUserDto);
 
 const mockUsers = [...createMockUsersArr(5), mockUser];
 const mockUsersWithoutPassword = mockUsers.map((user) => ({
@@ -75,11 +75,11 @@ const mockUserRepository = {
     return mockUsers;
   }),
   findByUUID: jest.fn((uuid: string) => {
-    return { ...mockUsers[10], uuid };
+    return { ...mockUser, uuid };
   }),
   findByEmail: jest.fn((email: string) => {
     return {
-      ...mockUsers[12],
+      ...mockUser,
       email,
     };
   }),

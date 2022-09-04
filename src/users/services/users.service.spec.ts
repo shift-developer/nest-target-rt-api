@@ -52,19 +52,19 @@ describe('UsersService', () => {
       });
     });
     describe('WHEN repository throws an error', () => {
-      it('THEN should not create an user and throws the error', () => {
+      it('THEN should not create an user and throws the error', async () => {
         mockUserRepository.createbyDTO.mockImplementationOnce(() => {
           throw new Error();
         });
-        expect(service.create(mockUserDto)).rejects.toThrow(Error);
+        await expect(service.create(mockUserDto)).rejects.toThrow(Error);
       });
     });
     describe('WHEN email already exists', () => {
-      it('THEN should not create an user and throws conflict exception with email error', () => {
+      it('THEN should not create an user and throws conflict exception with email error', async () => {
         mockUserRepository.createbyDTO.mockImplementationOnce(() => {
           throw { routine: ROUTINE_UNIQUE };
         });
-        expect(service.create(mockUserDto)).rejects.toThrow(
+        await expect(service.create(mockUserDto)).rejects.toThrow(
           new ConflictException(EMAIL_ERROR),
         );
       });
@@ -81,12 +81,12 @@ describe('UsersService', () => {
         expect(await service.findAll()).toEqual(mockUsers);
       });
     });
-    describe('WHEN repository throws an error', async () => {
-      it('THEN should not returns users', () => {
+    describe('WHEN repository throws an error', () => {
+      it('THEN should not returns users', async () => {
         mockUserRepository.find.mockImplementationOnce(() => {
           throw new Error();
         });
-        expect(service.findAll()).rejects.toThrow(Error);
+        await expect(service.findAll()).rejects.toThrow(Error);
       });
     });
   });
@@ -107,11 +107,11 @@ describe('UsersService', () => {
       });
     });
     describe('WHEN repository throws an error', () => {
-      it('THEN should not returns user', () => {
+      it('THEN should not returns user', async () => {
         mockUserRepository.findByUUID.mockImplementationOnce(() => {
           throw new Error();
         });
-        expect(service.findOne('id')).rejects.toThrow(Error);
+        await expect(service.findOne('id')).rejects.toThrow(Error);
       });
     });
   });
@@ -132,11 +132,13 @@ describe('UsersService', () => {
       });
     });
     describe('WHEN repository throws an error', () => {
-      it('THEN should not returns user', () => {
+      it('THEN should not returns user', async () => {
         mockUserRepository.findByEmail.mockImplementationOnce(() => {
           throw new Error();
         });
-        expect(service.findOne(mockUser.email)).rejects.toThrow(Error);
+        await expect(service.findByEmail(mockUser.email)).rejects.toThrow(
+          Error,
+        );
       });
     });
   });
