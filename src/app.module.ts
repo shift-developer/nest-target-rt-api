@@ -11,6 +11,7 @@ import {
   databaseConfig,
   JoiValidationSchema,
 } from '@config/index';
+import { UsersModule } from '@users/users.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import {
       },
     }),
     HomeModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],

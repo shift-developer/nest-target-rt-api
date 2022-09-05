@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Generated,
+  Index,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -14,6 +15,7 @@ export abstract class AbstractEntity extends BaseEntity {
   @Exclude()
   public id: number;
 
+  @Index()
   @Column()
   @Generated('uuid')
   public uuid: string;
