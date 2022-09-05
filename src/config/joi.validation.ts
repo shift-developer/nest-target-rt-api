@@ -11,7 +11,7 @@ export const JoiValidationSchema = Joi.object({
       NODE_ENV.STAGING,
     ),
   PORT: Joi.number().default(APP_DEFAULTS.PORT),
-  NAME: Joi.string().default(APP_DEFAULTS.NAME),
+  APP_NAME: Joi.string().default(APP_DEFAULTS.NAME),
   PWD: Joi.string().optional(),
   API_PREFIX: Joi.string().default(APP_DEFAULTS.API_PREFIX),
 

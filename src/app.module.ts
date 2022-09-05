@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { DatabaseModule } from '@database/database.module';
 import {
   appConfig,
   authConfig,
   databaseConfig,
   JoiValidationSchema,
-} from '@config';
+} from '@config/index';
+import { DatabaseModule } from '@database/database.module';
+import { HomeModule } from '@home/home.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import {
       validationSchema: JoiValidationSchema,
     }),
     DatabaseModule,
+    HomeModule,
   ],
   controllers: [],
   providers: [],
