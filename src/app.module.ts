@@ -3,13 +3,14 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from '@database/typeorm-config.service';
 import { DataSource } from 'typeorm';
+import { HomeModule } from '@home/home.module';
 
 import {
   appConfig,
   authConfig,
   databaseConfig,
   JoiValidationSchema,
-} from '@config';
+} from '@config/index';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import {
         return dataSource;
       },
     }),
+    HomeModule,
   ],
   controllers: [],
   providers: [],
