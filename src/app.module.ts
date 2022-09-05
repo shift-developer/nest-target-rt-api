@@ -1,13 +1,16 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmConfigService } from '@database/typeorm-config.service';
+import { DataSource } from 'typeorm';
+import { HomeModule } from '@home/home.module';
+
 import {
   appConfig,
   authConfig,
   databaseConfig,
   JoiValidationSchema,
 } from '@config/index';
-import { DatabaseModule } from '@database/database.module';
-import { HomeModule } from '@home/home.module';
 
 @Module({
   imports: [
@@ -17,7 +20,13 @@ import { HomeModule } from '@home/home.module';
       envFilePath: ['.env'],
       validationSchema: JoiValidationSchema,
     }),
-    DatabaseModule,
+    TypeOrmModule.forRootAsync({
+      useClass: TypeOrmConfigService,
+      dataSourceFactory: async (options) => {
+        const dataSource = await new DataSource(options).initialize();
+        return dataSource;
+      },
+    }),
     HomeModule,
   ],
   controllers: [],
